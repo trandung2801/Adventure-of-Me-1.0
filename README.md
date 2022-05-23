@@ -1,21 +1,21 @@
 # Giới thiệu chung
-I) Ý Tưởng
+. Ý tưởng
   Adventure of Me được lấy cảm hứng từ bộ Anime Bleach với nhân vật chính là Ichigo kết hợp với thể loại game phiêu lưu Mario nổi tiếng. Trong game người chơi sẽ được đóng giả thành Ichigo và thực hiện chuyến phiêu lưu của anh ta qua vùng đất The End Moonlight đầy huyền bí với nhiều quái vật đáng sợ.
   Bằng các cải tiến về mặt chiêu thực, game hứa hẹn khi trải nghiệm game người chơi sẽ được hòa mình vào thế giới vủa Adventure of Me và thoải mái thể hiện kĩ năng của bản thân để vượt qua các thử thách và phiêu lưu trong thế giới game đầy huyền diệu.
-II) Luật Chơi
+. Luật chơi
   Người chơi sẽ đóng giả thành nhân vật Ichigo và cùng nhân vât vượt qua các thử thách, các quái vật trong game để giành chiến thắng.
-III) Bộ Kĩ Năng
+. Bộ kĩ năng: 
   Ichigo có 4 kĩ năng chính:
     Q (Rút đao): Ichigo rút cây đao từ bao vung kiếm ngang cung cấp 1 đòn đánh thường cận chiến với 10 dame (Thời gian hồi chiêu 0).
     W (Chém xoáy): Ichigo vung đao từ dưới lên cung cấp 1 đòn đánh thường cận chiến với 10 dame (Thời gian hồi chiêu 0).
     E (Kiếm gió): Ichigo chém thanh đao của mình vào không khí tạo ra 3 vệt kiếm khí với độ lớn nhỏ dần, kiếm khí sẽ gây 50 dame (Thời gian hồi chiêu 10).
     R (Ánh sáng chói lóa): Ichigo cắm cây thanh đao của mình xuống đấy triệu hồi một cột sáng từ trên trời xuống gây 1000 dame (Thời gian hồi chiêu 1000).
     Lưu ý: Khi ấn E và R phải giữ cho hết hoạt ảnh animation của kĩ năng.
- IV) Di chuyển
+ . Di chuyển
     Up: Nhảy lên.
     Right: Đi sang phải.
     Left: Đi sang trái.
- V) Item phụ trợ và cách tính điểm.
+ . Items hỗ trợ và cách tính điểm
     Cộng 10 điểm với mỗi quái tiêu diệt được, 200 vói boss.
     Ăn 1 vàng sẽ được 1 vàng.
     Ăn trái tim để được hồi 500 hp (Có thể cộng dồn với máu hiện tại để vượt qua mức máu 500 của nhân vật)
@@ -27,7 +27,7 @@ III) Bộ Kĩ Năng
     . Stringstrem
     . Vector
     . Mở, đoc file
-    . Con trỏ
+    . Con trỏh
     . Struct
     . Class
     . Đồ Họa SDL 2.0
