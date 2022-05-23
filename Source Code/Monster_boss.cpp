@@ -305,15 +305,15 @@ void MonsterBoss::MakeAttackEffect(SDL_Renderer* des, const int& x_limit, const 
 
 void MonsterBoss::DameSkill_1_2()
 {
-    blood -=10;
+    blood -= 20;
 }
 
 void MonsterBoss::DameSkill_3()
 {
-    blood -=50;
+    blood -= 250;
 }
 
 void MonsterBoss::DameSkill_4()
 {
-    blood -=1000;
+    blood -= 1000;
 }

@@ -354,15 +354,15 @@ void MonsterObj::MakeAttackEffect(SDL_Renderer* screen, const int& x_limit, cons
 
 void MonsterObj::DameSkill_1_2()
 {
-    blood -=10;
+    blood -= 20;
 }
 
 void MonsterObj::DameSkill_3()
 {
-    blood -=250;
+    blood -= 250;
 }
 
 void MonsterObj::DameSkill_4()
 {
-    blood -=1000;
+    blood -= 1000;
 }
