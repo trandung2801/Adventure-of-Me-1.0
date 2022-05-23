@@ -11,7 +11,7 @@
         E (Kiếm gió): Ichigo chém thanh đao của mình vào không khí tạo ra 3 vệt kiếm khí với độ lớn nhỏ dần, kiếm khí sẽ gây 50 dame (Thời gian hồi chiêu 10).
         R (Ánh sáng chói lóa): Ichigo cắm cây thanh đao của mình xuống đấy triệu hồi một cột sáng từ trên trời xuống gây 1000 dame (Thời gian hồi chiêu 1000).
         Lưu ý: Khi ấn E và R phải giữ cho hết hoạt ảnh animation của kĩ năng.
-   # Di chuyển
+   # Di chuyển:
       Up: Nhảy lên.
       Right: Đi sang phải.
       Left: Đi sang trái.
