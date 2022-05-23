@@ -6,9 +6,9 @@
       Người chơi sẽ đóng giả thành nhân vật Ichigo và cùng nhân vât vượt qua các thử thách, các quái vật trong game để giành chiến thắng.
     # Bộ kĩ năng: 
       Ichigo có 4 kĩ năng chính:
-        Q (Rút đao): Ichigo rút cây đao từ bao vung kiếm ngang cung cấp 1 đòn đánh thường cận chiến với 10 dame (Thời gian hồi chiêu 0).
+        Q (Rút đao): Ichigo rút cây đao từ bao vung kiếm ngang cung cấp 1 đòn đánh thường cận chiến với 20 dame (Thời gian hồi chiêu 0).
         W (Chém xoáy): Ichigo vung đao từ dưới lên cung cấp 1 đòn đánh thường cận chiến với 10 dame (Thời gian hồi chiêu 0).
-        E (Kiếm gió): Ichigo chém thanh đao của mình vào không khí tạo ra 3 vệt kiếm khí với độ lớn nhỏ dần, kiếm khí sẽ gây 50 dame (Thời gian hồi chiêu 10).
+        E (Kiếm gió): Ichigo chém thanh đao của mình vào không khí tạo ra 3 vệt kiếm khí với độ lớn nhỏ dần, kiếm khí sẽ gây 250 dame (Thời gian hồi chiêu 10).
         R (Ánh sáng chói lóa): Ichigo cắm cây thanh đao của mình xuống đấy triệu hồi một cột sáng từ trên trời xuống gây 1000 dame (Thời gian hồi chiêu 1000).
         Lưu ý: Khi ấn E và R phải giữ cho hết hoạt ảnh animation của kĩ năng.
    # Di chuyển:
