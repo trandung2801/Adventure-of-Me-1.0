@@ -4,7 +4,6 @@ K66CD - CN1 - UET
 @trandung2801
 ![BackGround1](https://user-images.githubusercontent.com/103950416/169920086-bee852b6-c5c3-456e-8cfe-d1f5829231a0.png)
 
-
 # Giới thiệu chung
     # Ý tưởng
       Adventure of Me được lấy cảm hứng từ bộ Anime Bleach với nhân vật chính là Ichigo kết hợp với thể loại game phiêu lưu Mario nổi tiếng. Trong game người chơi sẽ được đóng giả thành Ichigo và thực hiện chuyến phiêu lưu của anh ta qua vùng đất The End Moonlight đầy huyền bí với nhiều quái vật đáng sợ.
@@ -12,6 +11,9 @@ K66CD - CN1 - UET
     # Luật chơi
       Người chơi sẽ đóng giả thành nhân vật Ichigo và cùng nhân vât vượt qua các thử thách, các quái vật trong game để giành chiến thắng.
     # Bộ kĩ năng: 
+    
+    https://www.youtube.com/watch?v=Pm4-aX53fBI
+    
       Ichigo có 4 kĩ năng chính:
         Q (Rút đao): Ichigo rút cây đao từ bao vung kiếm ngang cung cấp 1 đòn đánh thường cận chiến với 20 dame (Thời gian hồi chiêu 0).
         W (Chém xoáy): Ichigo vung đao từ dưới lên cung cấp 1 đòn đánh thường cận chiến với 10 dame (Thời gian hồi chiêu 0).
