@@ -2,6 +2,7 @@
 #include "main_obj.h"
 #include "attack_effect.h"
 #include "monster_obj.h"
+#include "GeneralData.h"
 
 main_obj::main_obj() // Khởi tạo hàm dành cho main với các trạng thái ban đầu
 {
@@ -41,7 +42,7 @@ main_obj::main_obj() // Khởi tạo hàm dành cho main với các trạng thá
     cooldownE = 0;
     money_count = 0;
 
-    blood = 500;
+    blood = 1000;
 }
 
 main_obj::~main_obj() // Hàm hủy
@@ -76,6 +77,11 @@ void main_obj::CenterEntiTyOnMap(Map& map_data)
 
 void main_obj::CheckMap(Map& map_data)
 {
+    Mix_Chunk* g_sound_item[2];
+
+    g_sound_item[0] = Mix_LoadWAV("Sound//Item//Hp.wav");
+    g_sound_item[1] = Mix_LoadWAV("Sound//Item//Money.wav");
+
     int x1 = 0;
     int x2 = 0;
 
@@ -103,12 +109,14 @@ void main_obj::CheckMap(Map& map_data)
                 map_data.tile[y1][x2] = 0;
                 map_data.tile[y2][x2] = 0;
                 IncreaseMoney();
+                Mix_PlayChannel(-1, g_sound_item[1], 0);
             }
             else if(val_1 == HEART || val_2 == HEART)
             {
                 map_data.tile[y1][x2] = 0;
                 map_data.tile[y2][x2] = 0;
-                reset_blood();
+                Healing();
+                Mix_PlayChannel(-1, g_sound_item[0], 0);
             }
             else
             {
@@ -130,12 +138,14 @@ void main_obj::CheckMap(Map& map_data)
                 map_data.tile[y1][x1] = 0;
                 map_data.tile[y2][x1] = 0;
                 IncreaseMoney();
+                Mix_PlayChannel(-1, g_sound_item[1], 0);
             }
             else if(val_1 == HEART || val_2 == HEART)
             {
                 map_data.tile[y1][x1] = 0;
                 map_data.tile[y2][x1] = 0;
-                reset_blood();
+                Healing();
+                Mix_PlayChannel(-1, g_sound_item[0], 0);
             }
             else
             {
@@ -168,12 +178,14 @@ void main_obj::CheckMap(Map& map_data)
                 map_data.tile[y2][x1] = 0;
                 map_data.tile[y2][x2] = 0;
                 IncreaseMoney();
+                Mix_PlayChannel(-1, g_sound_item[1], 0);
             }
             else if(val_1 == HEART || val_2 == HEART)
             {
                 map_data.tile[y2][x1] = 0;
                 map_data.tile[y2][x2] = 0;
-                reset_blood();
+                Healing();
+                Mix_PlayChannel(-1, g_sound_item[0], 0);
             }
             else
             {
@@ -200,12 +212,14 @@ void main_obj::CheckMap(Map& map_data)
                 map_data.tile[y1][x1] = 0;
                 map_data.tile[y1][x2] = 0;
                 IncreaseMoney();
+                Mix_PlayChannel(-1, g_sound_item[1], 0);
             }
             else if(val_1 == HEART || val_2 == HEART)
             {
                 map_data.tile[y1][x1] = 0;
                 map_data.tile[y1][x2] = 0;
-                reset_blood();
+                Healing();
+                Mix_PlayChannel(-1, g_sound_item[0], 0);
             }
             else
             {
@@ -261,12 +275,12 @@ void main_obj::IncreaseMoney()
 
 void main_obj::Healing()
 {
-    blood += 100;
+    blood += 500;
 }
 
 void main_obj::reset_blood()
 {
-    blood += 500;
+    blood += 1000;
 }
 
 void main_obj::DameMonster1()

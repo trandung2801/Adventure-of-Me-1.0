@@ -16,6 +16,12 @@ static SDL_Window* g_window = NULL;
 static SDL_Renderer* g_screen = NULL;
 static SDL_Event g_event;
 
+// Sound
+static Mix_Chunk* g_sound_main_attack[4];
+static Mix_Chunk* g_sound_menu[4];
+static Mix_Chunk* g_sound_main[2];
+
+
 // Screen
 const int FRAME_PER_SECOND = 30;
 const int SCREEN_WIDTH = 1600;

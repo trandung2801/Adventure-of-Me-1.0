@@ -1,7 +1,7 @@
 #include "main_obj.h"
 #include "GeneralData.h"
 
-void main_obj::HandeInputAction(SDL_Event events, SDL_Renderer* screen) // Hàm xử lí các sự kiện được nhập từ bàn phím
+void main_obj::HandeInputAction(SDL_Event events, SDL_Renderer* screen, Mix_Chunk* g_sound_main_attack[4], Mix_Chunk* g_sound_main[2]) // Hàm xử lí các sự kiện được nhập từ bàn phím
 {
     if(events.type == SDL_KEYDOWN) // Nếu chúng ta ấn phím xuống (ấn nút xuống)
     {
@@ -14,6 +14,7 @@ void main_obj::HandeInputAction(SDL_Event events, SDL_Renderer* screen) // Hàm 
                 input_type_.left_ = 0;
                 input_type_.default_right = 0;
                 input_type_.default_left = 0;
+                Mix_PlayChannel(-1, g_sound_main[0], 0);
             }
             break;
         case SDLK_LEFT: // Nếu là ấn nút sang trái
@@ -23,6 +24,7 @@ void main_obj::HandeInputAction(SDL_Event events, SDL_Renderer* screen) // Hàm 
                 input_type_.left_ = 1;
                 input_type_.default_right = 0;
                 input_type_.default_left = 0;
+                Mix_PlayChannel(-1, g_sound_main[0], 0);
             }
             break;
         case SDLK_UP:
@@ -45,6 +47,7 @@ void main_obj::HandeInputAction(SDL_Event events, SDL_Renderer* screen) // Hàm 
                     input_type_.left_ = 0;
                     input_type_.default_right = 0;
                     input_type_.default_left = 0;
+                    Mix_PlayChannel(-1, g_sound_main_attack[0], 0);
                 }
                 if(input_type_.left_ == 1 || input_type_.default_left == 1)
                 {
@@ -53,6 +56,7 @@ void main_obj::HandeInputAction(SDL_Event events, SDL_Renderer* screen) // Hàm 
                     input_type_.right_ = 0;
                     input_type_.default_right = 0;
                     input_type_.default_left = 0;
+                    Mix_PlayChannel(-1, g_sound_main_attack[0], 0);
                 }
             }
             break;
@@ -65,6 +69,7 @@ void main_obj::HandeInputAction(SDL_Event events, SDL_Renderer* screen) // Hàm 
                     input_type_.left_ = 0;
                     input_type_.default_right = 0;
                     input_type_.default_left = 0;
+                    Mix_PlayChannel(-1, g_sound_main_attack[0], 0);
                 }
                 if(input_type_.left_ == 1 || input_type_.default_left == 1)
                 {
@@ -73,6 +78,7 @@ void main_obj::HandeInputAction(SDL_Event events, SDL_Renderer* screen) // Hàm 
                     input_type_.right_ = 0;
                     input_type_.default_right = 0;
                     input_type_.default_left = 0;
+                    Mix_PlayChannel(-1, g_sound_main_attack[0], 0);
                 }
             }
             break;
@@ -92,6 +98,7 @@ void main_obj::HandeInputAction(SDL_Event events, SDL_Renderer* screen) // Hàm 
                         p_attack_effect->set_attack_effect_dir_(attack_effect::DIR_RIGHT);
                         p_attack_effect->LoadImgAttackEffect(screen);
                         p_attack_effect->SetRect(this->rect_.x + width_frame_ + 50, this->rect_.y + height_frame_*(-0.1));
+                        Mix_PlayChannel(-1, g_sound_main_attack[1], 0);
                     }
                     if(input_type_.left_ == 1 || input_type_.default_left == 1)
                     {
@@ -103,6 +110,7 @@ void main_obj::HandeInputAction(SDL_Event events, SDL_Renderer* screen) // Hàm 
                         p_attack_effect->set_attack_effect_dir_(attack_effect::DIR_LEFT);
                         p_attack_effect->LoadImgAttackEffect(screen);
                         p_attack_effect->SetRect(this->rect_.x - width_frame_ - 50, this->rect_.y + height_frame_*(-0.1));
+                        Mix_PlayChannel(-1, g_sound_main_attack[1], 0);
                     }
                     p_attack_effect->set_x_val(20);
                     p_attack_effect->set_y_val(20);
@@ -129,6 +137,7 @@ void main_obj::HandeInputAction(SDL_Event events, SDL_Renderer* screen) // Hàm 
                         p_attack_effect->set_attack_effect_dir_(attack_effect::DIR_DOWN);
                         p_attack_effect->LoadImgAttackEffect(screen);
                         p_attack_effect->SetRect(this->rect_.x + width_frame_ + 200, height_frame_  - 160);
+                        Mix_PlayChannel(-1, g_sound_main_attack[2], 0);
                     }
                     if(input_type_.default_left == 1)
                     {
@@ -140,6 +149,7 @@ void main_obj::HandeInputAction(SDL_Event events, SDL_Renderer* screen) // Hàm 
                         p_attack_effect->set_attack_effect_dir_(attack_effect::DIR_DOWN);
                         p_attack_effect->LoadImgAttackEffect(screen);
                         p_attack_effect->SetRect(this->rect_.x - 400,height_frame_ - 160);
+                        Mix_PlayChannel(-1, g_sound_main_attack[2], 0);
                     }
                     p_attack_effect->set_x_val(20);
                     p_attack_effect->set_y_val(30);

@@ -21,11 +21,10 @@ public:
 
     bool LoadImg(std::string path, SDL_Renderer* screen);
     void Show(SDL_Renderer* des);
-    void HandeInputAction(SDL_Event, SDL_Renderer* screen);
+    void HandeInputAction(SDL_Event, SDL_Renderer* screen, Mix_Chunk* g_sound_main_attack[4], Mix_Chunk* g_sound_main[2]);
     void set_clips();
     int GetStatus() const {return status_;}
-    float GetX_pos() const {return x_pos_;}
-    float GetX_val() const {return x_val_;}
+    float GetX_pos() {return x_pos_;}
 
     void DoPlayer(Map& map_data);
     void CheckMap(Map& map_data);

@@ -643,7 +643,7 @@
 	"GeneralData.h"
 	"Base.h"
 
-1653329667 source:d:\code block\adventure of me\main.cpp
+1653461543 source:d:\code block\adventure of me\main.cpp
 	"GeneralData.h"
 	"Base.h"
 	"game_map.h"
@@ -668,12 +668,12 @@
 1653330331 d:\code block\adventure of me\base.h
 	"GeneralData.h"
 
-1653296018 source:d:\code block\adventure of me\generaldata.cpp
+1653452112 source:d:\code block\adventure of me\generaldata.cpp
 	"GeneralData.h"
 	"Base.h"
 	"Text_obj.h"
 
-1653330741 d:\code block\adventure of me\generaldata.h
+1653458110 d:\code block\adventure of me\generaldata.h
 	<bits/stdc++.h>
 	<windows.h>
 	<vector>
@@ -687,17 +687,18 @@
 	"Base.h"
 	"GeneralData.h"
 
-1653330741 d:\code block\adventure of me\main_obj.h
+1653459722 d:\code block\adventure of me\main_obj.h
 	<vector>
 	"GeneralData.h"
 	"Base.h"
 	"game_map.h"
 	"attack_effect.h"
 
-1653325194 source:d:\code block\adventure of me\main_obj.cpp
+1653458502 source:d:\code block\adventure of me\main_obj.cpp
 	"main_obj.h"
 	"attack_effect.h"
 	"monster_obj.h"
+	"GeneralData.h"
 
 1652568112 source:d:\code block\adventure of me\load background.cpp
 	"GeneralData.h"
@@ -722,7 +723,7 @@
 	"FPS.h"
 	"Load Background.cpp"
 
-1653286703 source:d:\code block\adventure of me\main_obj_animation.cpp
+1653457816 source:d:\code block\adventure of me\main_obj_animation.cpp
 	"main_obj.h"
 	"GeneralData.h"
 
@@ -743,7 +744,7 @@
 	"Base.h"
 	"GeneralData.h"
 
-1653285003 source:d:\code block\adventure of me\monster_obj.cpp
+1653448475 source:d:\code block\adventure of me\monster_obj.cpp
 	"monster_obj.h"
 	"main_obj.h"
 	"GeneralData.h"
@@ -837,8 +838,9 @@
 	"Base.h"
 	"GeneralData.h"
 
-1653329667 source:d:\code block\adventure of me\monster_boss.cpp
+1653461572 source:d:\code block\adventure of me\monster_boss.cpp
 	"Monster_boss.h"
+	"GeneralData.h"
 
 1653330868 d:\code block\adventure of me\monster_boss.h
 	"Base.h"

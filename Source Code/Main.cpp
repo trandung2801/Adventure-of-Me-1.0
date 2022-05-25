@@ -55,11 +55,30 @@ bool InitData() // Khởi tạo thông số môi trường cho SDL
         {
             success = false;
         }
+
         font_menu = TTF_OpenFont("Font//dlxfont_.ttf", 50);
         if(font_menu == NULL)
         {
             success = false;
         }
+
+        if(Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1)
+        {
+            success = false;
+        }
+
+//Read sound
+        g_sound_menu[0] = Mix_LoadWAV("Sound//Menu Game//Menu.wav");
+        g_sound_menu[1] = Mix_LoadWAV("Sound//Menu Game//You-win.wav");
+        g_sound_menu[2] = Mix_LoadWAV("Sound//Menu Game//Game-Over.wav");
+        g_sound_menu[3] = Mix_LoadWAV("Sound//Menu Game//Backgound.wav");
+
+        g_sound_main_attack[0] = Mix_LoadWAV("Sound//Attack Effect//Skill 12.wav");
+        g_sound_main_attack[1] = Mix_LoadWAV("Sound//Attack Effect//Skill 3.wav");
+        g_sound_main_attack[2] = Mix_LoadWAV("Sound//Attack Effect//Skill 4.wav");
+
+        g_sound_main[0] = Mix_LoadWAV("Sound//Main//Walk.wav");
+
     }
 
     return success;
@@ -125,10 +144,16 @@ int main(int argc, char* argv[])
         return -1;
 
     //Make menu game
+    Mix_PlayChannel(-1, g_sound_menu[0], 100);
     int ret_menu = SDLGenaralData::ShowMenu(g_screen, font_menu, "Play Game", "Exit", "Data IMG//Map 01//Background//BackGround1.png");
     if (ret_menu == 1)
     {
         is_quit = true;
+    }
+    else
+    {
+        Mix_FreeChunk(g_sound_menu[0]);
+        Mix_PlayChannel(-1, g_sound_menu[3], 100);
     }
 
     if(LoadBackground() == false)
@@ -200,7 +225,7 @@ again:
                 is_quit = true;
             }
 
-            p_player.HandeInputAction(g_event, g_screen); // Các sự kiện đang được nhập từ bàn phím
+            p_player.HandeInputAction(g_event, g_screen, g_sound_main_attack, g_sound_main); // Các sự kiện đang được nhập từ bàn phím
         }
 
         SDL_SetRenderDrawColor(g_screen, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR, RENDER_DRAW_COLOR); // Render ra ngoài màn hình
@@ -281,9 +306,12 @@ again:
                         if(num_die > 5)
                         {
                             Sleep(500);
+                            Mix_FreeChunk(g_sound_menu[3]);
+                            Mix_PlayChannel(-1, g_sound_menu[2], 100);
                             int ret_menu = SDLGenaralData::ShowMenu(g_screen, font_menu,
                                                                    "Player Again", "Exit",
                                                                    "Data IMG//Map 01//Background//BackGround2.png");
+
                             if (ret_menu == 1)
                             {
                                 is_quit = true;
@@ -292,6 +320,7 @@ again:
                             else
                             {
                                 is_quit = false;
+                                Mix_FreeChunk(g_sound_menu[2]);
                                 goto again;
 
                             }
@@ -406,97 +435,88 @@ again:
         cooldownR_game.LoadFromRenderText(font_time, g_screen);
         cooldownR_game.RenderText(g_screen, 600, 15);
 
-        //Show Boss
-        MonsterBoss_1.SetMapXY(map_data.start_x_, map_data.start_y_);
-        MonsterBoss_1.DoPlayer(map_data);
-        MonsterBoss_1.MakeAttackEffect(g_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
-        MonsterBoss_1.Show(g_screen);
 
-        SDL_Rect rect_monster_boss = MonsterBoss_1.GetRectFrame();
 
-        bool bCol_1 = false;
-        std::vector<attack_effect*> tAttack_Effect_list = MonsterBoss_1.get_attack_effect_list();
-        for(int jj = 0; jj < tAttack_Effect_list.size(); jj ++)
+        if(score_value >= 490)
         {
-            attack_effect* pt_attack_effect = tAttack_Effect_list.at(jj);
-            SDL_Rect rect_attack_effect = pt_attack_effect->GetRectFrame();
-            if(pt_attack_effect)
+                //Show Boss
+            MonsterBoss_1.SetMapXY(map_data.start_x_, map_data.start_y_);
+            MonsterBoss_1.DoPlayer(map_data);
+            MonsterBoss_1.MakeAttackEffect(g_screen, SCREEN_WIDTH, SCREEN_HEIGHT);
+            MonsterBoss_1.Show(g_screen);
+
+            SDL_Rect rect_monster_boss = MonsterBoss_1.GetRectFrame();
+
+            bool bCol_1 = false;
+            std::vector<attack_effect*> tAttack_Effect_list = MonsterBoss_1.get_attack_effect_list();
+            for(int jj = 0; jj < tAttack_Effect_list.size(); jj ++)
             {
-                bCol_1 = SDLGenaralData::CheckCollision(rect_attack_effect, rect_player);
-                if(bCol_1)
+                attack_effect* pt_attack_effect = tAttack_Effect_list.at(jj);
+                SDL_Rect rect_attack_effect = pt_attack_effect->GetRectFrame();
+                if(pt_attack_effect)
                 {
-                    p_player.DameMonsterBoss2();
-                    int blood_main_now = p_player.GetBlood();
-                    if(blood_main_now <= 0)
+                    bCol_1 = SDLGenaralData::CheckCollision(rect_attack_effect, rect_player);
+                    if(bCol_1)
                     {
-                        num_die ++;
-                        if(num_die <= 5)
+                        p_player.DameMonsterBoss2();
+                        int blood_main_now = p_player.GetBlood();
+                        if(blood_main_now <= 0)
                         {
-                            p_player.SetRect(0, 0);
-                            p_player.set_comeback_time(60);
-                            SDL_Delay(1000);
-                            tab_game.Decrease();
-                            tab_game.Render(g_screen);
-                            p_player.reset_blood();
-                            continue;
-                        }
-                        if(num_die > 5)
-                        {
-                            Sleep(500);
-                            int ret_menu = SDLGenaralData::ShowMenu(g_screen, font_menu,
-                                                                   "Player Again", "Exit",
-                                                                   "Data IMG//Map 01//Background//BackGround2.png");
-                            if (ret_menu == 1)
+                            num_die ++;
+                            if(num_die <= 5)
                             {
-                                is_quit = true;
+                                p_player.SetRect(0, 0);
+                                p_player.set_comeback_time(60);
+                                SDL_Delay(1000);
+                                tab_game.Decrease();
+                                tab_game.Render(g_screen);
+                                p_player.reset_blood();
                                 continue;
                             }
-                            else
+                            if(num_die > 5)
                             {
-                                is_quit = false;
-                                goto again;
+                                Sleep(500);
+                                Mix_FreeChunk(g_sound_menu[3]);
+                                Mix_PlayChannel(-1, g_sound_menu[2], 100);
+                                int ret_menu = SDLGenaralData::ShowMenu(g_screen, font_menu,
+                                                                       "Player Again", "Exit",
+                                                                       "Data IMG//Map 01//Background//BackGround2.png");
+                                if (ret_menu == 1)
+                                {
+                                    is_quit = true;
+                                    continue;
+                                }
+                                else
+                                {
+                                    is_quit = false;
+                                    Mix_FreeChunk(g_sound_menu[2]);
+                                    goto again;
+                                }
                             }
                         }
+                    break;
                     }
-                break;
                 }
             }
-        }
 
-        bool bCol_2 = SDLGenaralData::CheckCollision(rect_player, rect_monster_boss);
-        if(bCol_2 )
-        {
-            p_player.DameMonsterBoss1();
-            if(p_player.GetStatus() == SKILL_1_LEFT || p_player.GetStatus() == SKILL_1_RIGHT ||
-            p_player.GetStatus() == SKILL_2_LEFT || p_player.GetStatus() == SKILL_2_RIGHT)
+            bool bCol_2 = SDLGenaralData::CheckCollision(rect_player, rect_monster_boss);
+            if(bCol_2 )
             {
-                MonsterBoss_1.DameSkill_1_2();
-            }
-            if(MonsterBoss_1.GetBlood() <= 0)
-            {
-                MonsterBoss_1.Release();
-                score_value += 200;
-            }
-            int blood_main_now = p_player.GetBlood();
-            if(blood_main_now <= 0)
-            {
-                num_die ++;
-                if(num_die <= 5)
+                p_player.DameMonsterBoss1();
+                if(p_player.GetStatus() == SKILL_1_LEFT || p_player.GetStatus() == SKILL_1_RIGHT ||
+                p_player.GetStatus() == SKILL_2_LEFT || p_player.GetStatus() == SKILL_2_RIGHT)
                 {
-                    p_player.SetRect(0, 0);
-                    p_player.set_comeback_time(60);
-                    SDL_Delay(1000);
-                    tab_game.Decrease();
-                    tab_game.Render(g_screen);
-                    p_player.reset_blood();
-                    continue;
+                    MonsterBoss_1.DameSkill_1_2();
                 }
-                if(num_die > 5)
+                if(MonsterBoss_1.GetBlood() <= 0)
                 {
+                    score_value += 200;
                     Sleep(500);
+                    Mix_FreeChunk(g_sound_menu[3]);
+                    Mix_PlayChannel(-1, g_sound_menu[1], 100);
                     int ret_menu = SDLGenaralData::ShowMenu(g_screen, font_menu,
                                                             "Player Again", "Exit",
-                                                            "Data IMG//Map 01//Background//BackGround2.png");
+                                                            "Data IMG//Map 01//Background//BackGround3.png");
                     if (ret_menu == 1)
                     {
                         is_quit = true;
@@ -505,40 +525,32 @@ again:
                     else
                     {
                         is_quit = false;
+                        Mix_FreeChunk(g_sound_menu[1]);
                         goto again;
                     }
                 }
-            }
-        }
-
-        for(int j = 0; j < attack_effect_arr.size(); j++)
-        {
-            attack_effect* p_attack_effect = attack_effect_arr.at(j);
-            if(p_attack_effect != NULL)
-            {
-                SDL_Rect rect_attack_effect = p_attack_effect->GetRectFrame();
-                // Va chạm monster vs attack effect của nhân vật
-                bool bCol = SDLGenaralData::CheckCollision(rect_attack_effect, rect_monster_boss);
-
-                if(bCol)
+                int blood_main_now = p_player.GetBlood();
+                if(blood_main_now <= 0)
                 {
-
-                    if(p_player.GetStatus() == SKILL_3_LEFT || p_player.GetStatus() == SKILL_3_RIGHT)
+                    num_die ++;
+                    if(num_die <= 5)
                     {
-                        MonsterBoss_1.DameSkill_3();
+                        p_player.SetRect(0, 0);
+                        p_player.set_comeback_time(60);
+                        SDL_Delay(1000);
+                        tab_game.Decrease();
+                        tab_game.Render(g_screen);
+                        p_player.reset_blood();
+                        continue;
                     }
-                    if(p_player.GetStatus() == SKILL_4_LEFT || p_player.GetStatus() == SKILL_4_RIGHT)
+                    if(num_die > 5)
                     {
-                        MonsterBoss_1.DameSkill_4();
-                    }
-                    p_player.RemoveAttackEffect(j);
-                    if(MonsterBoss_1.GetBlood() <= 0)
-                    {
-                        score_value += 200;
                         Sleep(500);
+                        Mix_FreeChunk(g_sound_menu[3]);
+                        Mix_PlayChannel(-1, g_sound_menu[2], 100);
                         int ret_menu = SDLGenaralData::ShowMenu(g_screen, font_menu,
                                                                 "Player Again", "Exit",
-                                                                "Data IMG//Map 01//Background//BackGround3.png");
+                                                                "Data IMG//Map 01//Background//BackGround2.png");
                         if (ret_menu == 1)
                         {
                             is_quit = true;
@@ -547,7 +559,54 @@ again:
                         else
                         {
                             is_quit = false;
+                            Mix_FreeChunk(g_sound_menu[2]);
                             goto again;
+                        }
+                    }
+                }
+            }
+
+            for(int j = 0; j < attack_effect_arr.size(); j++)
+            {
+                attack_effect* p_attack_effect = attack_effect_arr.at(j);
+                if(p_attack_effect != NULL)
+                {
+                    SDL_Rect rect_attack_effect = p_attack_effect->GetRectFrame();
+                    // Va chạm monster vs attack effect của nhân vật
+                    bool bCol = SDLGenaralData::CheckCollision(rect_attack_effect, rect_monster_boss);
+
+                    if(bCol)
+                    {
+
+                        if(p_player.GetStatus() == SKILL_3_LEFT || p_player.GetStatus() == SKILL_3_RIGHT)
+                        {
+                            MonsterBoss_1.DameSkill_3();
+                        }
+                        if(p_player.GetStatus() == SKILL_4_LEFT || p_player.GetStatus() == SKILL_4_RIGHT)
+                        {
+                            MonsterBoss_1.DameSkill_4();
+                        }
+                        p_player.RemoveAttackEffect(j);
+                        if(MonsterBoss_1.GetBlood() <= 0)
+                        {
+                            score_value += 200;
+                            Sleep(500);
+                            Mix_FreeChunk(g_sound_menu[3]);
+                            Mix_PlayChannel(-1, g_sound_menu[1], 100);
+                            int ret_menu = SDLGenaralData::ShowMenu(g_screen, font_menu,
+                                                                    "Player Again", "Exit",
+                                                                    "Data IMG//Map 01//Background//BackGround3.png");
+                            if (ret_menu == 1)
+                            {
+                                is_quit = true;
+                                continue;
+                            }
+                            else
+                            {
+                                is_quit = false;
+                                Mix_FreeChunk(g_sound_menu[1]);
+                                goto again;
+                            }
                         }
                     }
                 }

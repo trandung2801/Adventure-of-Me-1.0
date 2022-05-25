@@ -1,4 +1,5 @@
 #include "Monster_boss.h"
+#include "GeneralData.h"
 
 MonsterBoss::MonsterBoss()
 {
@@ -258,10 +259,13 @@ void MonsterBoss::CheckMap(Map& g_map)
 
 void MonsterBoss::InitAttackEffect(SDL_Renderer* screen)
 {
+    Mix_Chunk* g_sound_monster_attack[2];
+    g_sound_monster_attack[0] = Mix_LoadWAV("Sound//Monster//dragon fire.wav");
     attack_effect* p_attack_effect = new attack_effect();
     bool ret = p_attack_effect->LoadImg("Data IMG//monster_animation//boss attackeffect.png", screen);
     if(ret)
     {
+        Mix_PlayChannel(-1, g_sound_monster_attack[0], 0);
         p_attack_effect->set_attack_effect_dir_(attack_effect::DIR_LEFT);
         p_attack_effect->set_is_move(true);
         p_attack_effect->SetRect(rect_.x - 50 , rect_.y + 220 );

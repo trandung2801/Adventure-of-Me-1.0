@@ -7,6 +7,7 @@ int SDLGenaralData::ShowMenu(SDL_Renderer* g_screen, TTF_Font* font,
                             const std::string& menu2,
                             const std::string& img_name)
 {
+
     char* ch1 = (char*)menu1.c_str();
     char* ch2 = (char*)menu2.c_str();
     char* img_file = (char*)img_name.c_str();
