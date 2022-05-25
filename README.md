@@ -25,11 +25,12 @@ K66CD - CN1 - UET
       Right: Đi sang phải.
       Left: Đi sang trái.
    # Items hỗ trợ và cách tính điểm
-      Cộng 10 điểm với mỗi quái tiêu diệt được, 200 vói boss.
+      Cộng 10 điểm với mỗi quái tiêu diệt được, 200 với boss.
       Ăn 1 vàng sẽ được 1 vàng.
-      Ăn trái tim để được hồi 500 hp (Có thể cộng dồn với máu hiện tại để vượt qua mức máu 500 của nhân vật)
+      Ăn trái tim để được hồi 500 hp (Có thể cộng dồn với máu hiện tại để vượt qua mức máu 1000 của nhân vật)
  # Cách cài đặt
     Link Download: https://bom.so/Adventure-Of-Me-10
+    Game hiện tại chỉ hỗ trợ cho máy tính windown 64 bit.
     Sau khi download thành công, truy cập vào file rồi ấn mở bin -> Debug -> adventure of me.exe để chơi game.
  # Các kĩ thuật lập trình
     . Mảng
@@ -48,8 +49,8 @@ K66CD - CN1 - UET
  # Kết luận
     Sau 1 thời gian mày mò, phát triển game tôi đã rút ra được một số kĩ năng quân trong trong việc xử lý struct, class cùng với đó là kĩ năng sử dụng vector, con trỏ, mảng đặc biệt là kĩ năng sử dụng SDL 2.0 để làm game, một số thuật toán và kĩ thuật title map. Qua đó xây dựng cho tôi một nền tảng vững chắc để có thể xử lý tốt các project sau này. Ngoài ra game cũng giúp tôi bồi dưỡng khả năng tìm tòi, khả năng đọc hiểu, khả năng tiếng anh của ban thân mình. Đây là một bước tiến lớn trong năm nhất của tôi.
     Hướng phát triển trong tương lai:
-      . Thêm âm thanh cho game.
-      . Xử lý đồ họa sao cho đẹp nhất.
+      . Cải thiện âm thanh.
+      . Cải thiện đồ họa.
       . Xử lý tình trạng game còn lag, gặp nhiều lỗi.
       . Thêm map để đa dạng trò trơi.
       . Thêm main để người chơi chọn lựa.
