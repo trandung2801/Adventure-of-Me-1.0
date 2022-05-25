@@ -29,7 +29,7 @@ K66CD - CN1 - UET
       Ăn 1 vàng sẽ được 1 vàng.
       Ăn trái tim để được hồi 500 hp (Có thể cộng dồn với máu hiện tại để vượt qua mức máu 1000 của nhân vật)
  # Cách cài đặt
-    Link Download: https://bom.so/Adventure-Of-Me-10
+    Link Download: https://bom.so/Adventure-of-Me-100
     Game hiện tại chỉ hỗ trợ cho máy tính windown 64 bit.
     Sau khi download thành công, truy cập vào file rồi ấn mở bin -> Debug -> adventure of me.exe để chơi game.
  # Các kĩ thuật lập trình
